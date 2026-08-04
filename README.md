@@ -8,11 +8,16 @@ Segundas-feiras
 Início 17/08 - término 14/12
 
 
-Abaixo os dias sem aula:	
+Dias sem aula:
+
 10/08	- Calouros
+
 07/09	- Feriado
+
 12/10	- Feriado
+
 19/10	- TechWeek
+
 02/11	- Feriado
 
 
