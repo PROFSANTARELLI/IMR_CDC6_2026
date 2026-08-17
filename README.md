@@ -1,7 +1,7 @@
 Repositório Oficial da Disciplina de Intelligent Mobile Robots do curso de Ciências da computação - 2º semestre de 2026.
 
 Detalhes:
-Laboratório 13 ou 17
+Laboratório 13
 
 Segundas-feiras
 
