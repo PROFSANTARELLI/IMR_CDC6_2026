@@ -82,9 +82,6 @@ Síntese em 3 Passos:
 3 - Como chego ao alvo? → Calculando o erro até o objetivo e aplicando o Controlador Proporcional (Kp).
 
 
-<img width="672" height="230" alt="image" src="https://github.com/user-attachments/assets/be4206bf-d70c-449f-944e-af57296589af" />
-
-
 
 
 
