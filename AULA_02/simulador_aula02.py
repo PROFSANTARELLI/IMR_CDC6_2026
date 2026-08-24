@@ -1,6 +1,6 @@
 # Se for executar no VSCode, executar:
 # 1. Criar e ativar o ambiente virtual
-# python3 -m venv venv_robotica
+# python ou python3 -m venv venv_robotica
 # source venv_robotica/bin/activate     # No Linux
 # venv_robotica\Scripts\activate        # No Windows
 #
