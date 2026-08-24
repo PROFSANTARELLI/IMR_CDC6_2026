@@ -1,0 +1,152 @@
+
+R02
+import pygame
+import math
+import numpy as np
+
+# Configurações da Janela
+LARGURA_TELA = 800
+ALTURA_TELA = 600
+FPS = 60
+COR_FUNDO = (30, 30, 30)
+COR_ROBO = (0, 180, 255)
+COR_DIRECAO = (255, 50, 50)
+COR_TRAJETORIA = (100, 200, 100)
+COR_ALVO = (255, 215, 0)
+
+class DiffDriveRobot:
+    def __init__(self, x, y, theta=0.0, wheelbase=30.0, radius=15.0):
+        self.x = float(x)
+        self.y = float(y)
+        self.theta = float(theta)
+        self.L = float(wheelbase)
+        self.radius = float(radius)
+        self.v = 0.0
+        self.omega = 0.0
+        self.history = []
+
+    def set_direct_velocity(self, v, omega):
+        self.v = v
+        self.omega = omega
+
+    def update(self, dt):
+        self.theta += self.omega * dt
+        # Normalização angular [-pi, pi]
+        self.theta = (self.theta + math.pi) % (2 * math.pi) - math.pi
+        
+        self.x += self.v * math.cos(self.theta) * dt
+        self.y += self.v * math.sin(self.theta) * dt
+        
+        # Histórico de rastreamento
+        if len(self.history) == 0 or np.hypot(self.x - self.history[-1][0], self.y - self.history[-1][1]) > 5:
+            self.history.append((self.x, self.y))
+            if len(self.history) > 600:
+                self.history.pop(0)
+
+    def draw(self, surface):
+        if len(self.history) > 1:
+            pygame.draw.lines(surface, COR_TRAJETORIA, False, self.history, 2)
+            
+        pos_int = (int(self.x), int(self.y))
+        pygame.draw.circle(surface, COR_ROBO, pos_int, int(self.radius))
+        
+        linha_frente_x = self.x + (self.radius + 10) * math.cos(self.theta)
+        linha_frente_y = self.y + (self.radius + 10) * math.sin(self.theta)
+        pygame.draw.line(surface, COR_DIRECAO, pos_int, (int(linha_frente_x), int(linha_frente_y)), 3)
+
+
+def normalizar_angulo(angulo):
+    """Garante que a diferença angular esteja no menor caminho: [-pi, pi]."""
+    return (angulo + math.pi) % (2 * math.pi) - math.pi
+
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
+    pygame.display.set_caption("Aula 01 - Exercício 3: Go-to-Goal (Controlador P)")
+    clock = pygame.time.Clock()
+    font = pygame.font.SysFont("monospace", 14)
+
+    robot = DiffDriveRobot(x=LARGURA_TELA // 2, y=ALTURA_TELA // 2, theta=0.0)
+    
+    # Alvo inicial
+    target_pos = None  # (x_alvo, y_alvo)
+
+    # Ganhos Proporcionais (Kp)
+    KP_DISTANCIA = 1.2   # Converte erro de distância (px) em velocidade linear (px/s)
+    KP_ANGULO = 4.0      # Converte erro de ângulo (rad) em velocidade angular (rad/s)
+    
+    # Limites físicos do robô
+    MAX_V = 150.0        # px/s
+    MAX_OMEGA = 3.5      # rad/s
+    TOLERANCIA_CHEGADA = 8.0  # pixels
+
+    running = True
+    while running:
+        dt = clock.tick(FPS) / 1000.0
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            # Define novo alvo ao clicar na tela
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                target_pos = event.pos
+
+        # Lógica de Controle P (Go-to-Goal)
+        v_cmd = 0.0
+        omega_cmd = 0.0
+
+        if target_pos is not None:
+            dx = target_pos[0] - robot.x
+            dy = target_pos[1] - robot.y
+            distancia = math.hypot(dx, dy)
+
+            # Se ainda não chegou ao alvo
+            if distancia > TOLERANCIA_CHEGADA:
+                theta_desejado = math.atan2(dy, dx)
+                erro_theta = normalizar_angulo(theta_desejado - robot.theta)
+
+                # Controle angular proporcional
+                omega_cmd = KP_ANGULO * erro_theta
+                omega_cmd = np.clip(omega_cmd, -MAX_OMEGA, MAX_OMEGA)
+
+                # Controle linear proporcional com amortecimento em curvas fechadas:
+                # Se o erro angular for grande (> 45°), reduz a velocidade linear para alinhar primeiro
+                fator_alinhamento = max(0.0, math.cos(erro_theta))
+                v_cmd = KP_DISTANCIA * distancia * fator_alinhamento
+                v_cmd = np.clip(v_cmd, 0.0, MAX_V)
+            else:
+                # Alvo atingido: zera comandos
+                v_cmd = 0.0
+                omega_cmd = 0.0
+
+        robot.set_direct_velocity(v_cmd, omega_cmd)
+        robot.update(dt)
+
+        # Renderização
+        screen.fill(COR_FUNDO)
+
+        # Desenha o alvo se existir
+        if target_pos is not None:
+            pygame.draw.circle(screen, COR_ALVO, target_pos, 8)
+            pygame.draw.circle(screen, COR_ALVO, target_pos, int(TOLERANCIA_CHEGADA), 1)
+
+        robot.draw(screen)
+
+        # Painel de Telemetria
+        info_txt = [
+            f"Pose: X={robot.x:.1f}, Y={robot.y:.1f}, Theta={math.degrees(robot.theta):.1f}°",
+            f"Comandos: v={robot.v:.1f} px/s | omega={robot.omega:.2f} rad/s",
+            f"Alvo: {target_pos if target_pos else 'Clique na tela para definir'}",
+            "Instrução: Clique com o botão esquerdo do mouse para guiar o robô."
+        ]
+        for i, txt in enumerate(info_txt):
+            rendered = font.render(txt, True, (220, 220, 220))
+            screen.blit(rendered, (15, 15 + i * 20))
+
+        pygame.display.flip()
+
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
