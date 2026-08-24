@@ -9,7 +9,10 @@ O que define um robô móvel autônomo:
 
 - Ciclo clássico: Sentir (Percepção) -> Pensar (Planejamento) -> Agir (Controle).
 
+- Pose: Posição cartesiana do centro do eixo (x, y) combinada com a orientação theta (ângulo da "frente" do robô em radianos).
+  
 - Sistema de Coordenadas e Estado do Robô: O estado de um robô móvel em um plano 2D é definido pela pose:
+
 
 
   <img width="115" height="98" alt="image" src="https://github.com/user-attachments/assets/e1d633df-ee61-4cd3-b62b-f381328e5a3a" />
@@ -28,6 +31,9 @@ Onde (x, y) representam a posição no espaço cartesiano e θ representa a orie
        (x, y) = Posição no plano | θ (Teta) = Ângulo de guinada em radianos/graus
 
 -----------------------------------------------------------------------------------------
+
+
+Parâmetro L (Wheelbase): A distância física entre os pontos de contato das rodas com o solo. L dita a "dificuldade" de girar: quanto maior L, maior deve ser a diferença entre as rodas para produzir a mesma rotação.
 
   [ 2. CINEMÁTICA DIRETA: DAS RODAS PARA O CORPO ]
 
