@@ -3,10 +3,10 @@ AULA 04 — LABORATÓRIOS - AC-2 PARTE 1 - VALOR: 0,25
 Formato de entrega: Criar a pasta AULA_04 no repositório oficial da dupla/trio no GitHub. 
 Relatório: Salvar os prints de execução e as explicações técnicas dentro do arquivo resultados_aula04.md.
 
-Exercício 1: Validador de Pose em Malha Aberta (Cinemática Diferencial)
+Exercício 1: Validador de Pose em malha aberta (Cinemática Diferencial)
 Objetivo: Calcular e simular a nova Pose (x, y, θ) de um robô diferencial após uma sequência de comandos de velocidade temporizados.
 Passo a Passo: 
-1.	Crie o script `ex1_pose.py`.
+1.	Crie o script lab1_pose.py.
 2.	Partindo da origem inicial (x=0.0, y=0.0, θ=0.0), aplique em malha aberta a seguinte sequência:
 •	Trecho 1: t₁ = 4.0 s com v = 0.5 m/s e ω = 0.0 rad/s.
 •	Trecho 2: t₂ = 2.0 s com v = 0.0 m/s e ω = 0.7854 rad/s (π/4 rad/s).
@@ -14,60 +14,45 @@ Passo a Passo:
 3.	Resultado esperado: O robô no Pygame deve deslocar-se para frente, girar 45° sobre o próprio eixo e avançar na nova orientação. O script deve imprimir no terminal a Pose final teórica calculada e a Pose simulada.
 
 
-Exercício 2: Calculadora de Giro Ackermann vs. Diferencial
+Exercício 2: Calculadora de giro Ackermann vs. Diferencial
 Objetivo: Comparar visualmente e matematicamente o raio de curvatura de uma tração Ackermann em relação ao modelo Diferencial.
 Passo a Passo: 
-4.	Crie o script `ex2_ackermann.py`.
-5.	Monte uma interface Pygame onde o usuário define via teclado a velocidade linear v e o ângulo de esterço das rodas dianteiras φ.
-6.	Calcule a velocidade angular resultante para um veículo Ackermann com entre-eixos L = 2.0 m usando a relação:
+1.	Crie o script lab2_ackermann.py.
+2.	Monte uma interface Pygame onde o usuário define via teclado a velocidade linear v e o ângulo de esterço das rodas dianteiras φ.
+3.	Calcule a velocidade angular resultante para um veículo Ackermann com entre-eixos L = 2.0 m usando a relação:
 ω = (v / L) · tan(φ)
-7.	Limite o ângulo de esterço em φₘáₓ = ±30° e demonstre que, diferente do robô diferencial, o veículo Ackermann não consegue zerar seu raio de curva (R = L / tan(φ)).
-8.	Resultado esperado: O robô deve desenhar uma trajetória circular no Pygame proporcional ao ângulo φ informado.
+4.	Limite o ângulo de esterço em φₘáₓ = ±30° e demonstre que, diferente do robô diferencial, o veículo Ackermann não consegue zerar seu raio de curva (R = L / tan(φ)).
+5.	Resultado esperado: O robô deve desenhar uma trajetória circular no Pygame proporcional ao ângulo φ informado.
 
 
-Exercício 3: Ponte de Conversão de Comandos (Tradução e Filtro no ROS 2)
-Objetivo: Construir um nó intermediário em ROS 2 para limitar comandos brutos de velocidade por questão de segurança.
-Passo a Passo: 
-9.	Crie o script `ex3_safety_bridge.py`.
-10.	O nó deve assinar o tópico `/cmd_raw` (mensagem do tipo `geometry_msgs/msg/Twist`).
-11.	Implemente uma trava de segurança que limite os valores antes de repassá-los:
-•	Se |vₓ| > 0.8 m/s, trave em 0.8 m/s (mantendo o sinal).
-•	Se |ω_z| > 1.0 rad/s, trave em 1.0 rad/s (mantendo o sinal).
-12.	Publique a mensagem tratada no tópico oficial `/cmd_vel`.
-13.	Resultado esperado: Ao publicar valores altos via terminal em `/cmd_raw`, o nó bridge deve exibir no terminal a interceptação e publicar a velocidade filtrada em `/cmd_vel`.
-
-
-Exercício 4: Varredura Sensorial com Filtro de Alcance e Desvio de Ruído
+Exercício 3: Varredura Sensorial com Filtro de Alcance e Desvio de Ruído
 Objetivo: Filtrar ruído gaussiano simulado em leituras de sensores de distância antes do envio para o controlador.
 Passo a Passo: 
-14.	Crie o script `ex4_sensor_filter.py`.
-15.	Implemente uma varredura com 7 feixes de distância cobrindo um campo de visão de 180° (de -π/2 a +π/2).
-16.	Adicione ruído gaussiano às medições reais: d_ruído = d_real + np.random.normal(0, 5.0).
-17.	Aplique um Filtro de Limiar (Threshold):
+1.	Crie o script lab3_sensor_filter.py.
+2.	Implemente uma varredura com 7 feixes de distância cobrindo um campo de visão de 180° (de -π/2 a +π/2).
+3.	Adicione ruído gaussiano às medições reais: d_ruído = d_real + np.random.normal(0, 5.0).
+4.	Aplique um Filtro de Limiar (Threshold):
 •	Leituras < 10.0 px devem ser descartadas (consideradas erro de leitura).
 •	Leituras > 200.0 px devem ser cravadas no alcance máximo de 200.0 px.
-18.	Resultado esperado: Renderizar na tela do Pygame o valor da distância bruta simulada (com ruído) lado a lado com o valor tratado pelo filtro.
+5.	Resultado esperado: Renderizar na tela do Pygame o valor da distância bruta simulada (com ruído) lado a lado com o valor tratado pelo filtro.
 
 
-Exercício 5: Braitenberg com Conexões Diretas (Comportamento de Agressão/Atração)
+Exercício 4: Braitenberg com conexões diretas (Comportamento de Agressão/Atração)
 Objetivo: Implementar conexões não-cruzadas (diretas) de Braitenberg para observar a alteração de comportamento do robô em relação à aula anterior.
 Passo a Passo: 
-19.	Crie o script `ex5_braitenberg_direct.py`.
-20.	Conecte o sensor da esquerda na roda esquerda e o sensor da direita na roda direita:
+1.	Crie o script lab4_braitenberg.py.
+2.	Conecte o sensor da esquerda na roda esquerda e o sensor da direita na roda direita:
 vL = v₀ + α · (1.0 - d_esq / d_máx)
 vR = v₀ + α · (1.0 - d_dir / d_máx)
-21.	Coloque um obstáculo na arena no Pygame e movimente o robô em direção a ele.
-22.	Resultado esperado: Ao detectar um obstáculo à direita, a roda direita acelerará, fazendo o robô virar em direção ao obstáculo (comportamento de atração/agressão), oposto ao comportamento de aversão/medo visto na Aula 03.
+3.	Coloque um obstáculo na arena no Pygame e movimente o robô em direção a ele.
+4.	Resultado esperado: Ao detectar um obstáculo à direita, a roda direita acelerará, fazendo o robô virar em direção ao obstáculo (comportamento de atração/agressão), oposto ao comportamento de aversão/medo visto na Aula 03.
 
 
-Exercício 6: Centralização Autônoma em Corredor (Controle Proporcional)
+Exercício 5: Centralização autônoma em corredor (Controle Proporcional)
 Objetivo: Desenvolver um algoritmo de navegação em malha fechada que mantenha o robô centralizado entre duas paredes laterais.
 Passo a Passo: 
-23.	Crie o script `ex6_corridor.py`.
-24.	Crie no Pygame um corredor retilínio composto por duas paredes paralelas.
-25.	Utilize dois feixes laterais fixos a -90° e +90° para medir as distâncias até a parede esquerda (d_esq) e direita (d_dir).
-26.	Calcule o erro de centralização e = d_esq - d_dir e aplique a lei de controle angular ω = Kp · e (com Kp = 0.01) mantendo a velocidade linear constante v = 40.0 px/s.
-27.	Resultado esperado: O robô deve percorrer o corredor e corrigir sua posição automaticamente, mantendo-se no centro mesmo se for posicionado desalinhado no início da execução.
-
-
-
+1.	Crie o script ex5_corridor.py.
+2.	Crie no Pygame um corredor retilínio composto por duas paredes paralelas.
+3.	Utilize dois feixes laterais fixos a -90° e +90° para medir as distâncias até a parede esquerda (d_esq) e direita (d_dir).
+4.	Calcule o erro de centralização e = d_esq - d_dir e aplique a lei de controle angular ω = Kp · e (com Kp = 0.01) mantendo a velocidade linear constante v = 40.0 px/s.
+5.	Resultado esperado: O robô deve percorrer o corredor e corrigir sua posição automaticamente, mantendo-se no centro mesmo se for posicionado desalinhado no início da execução.
