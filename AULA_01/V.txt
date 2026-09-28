@@ -5,7 +5,7 @@ No entanto, os motores das rodas têm um limite físico de velocidade de no máx
 
 Desafio:
 - Escreva uma função em Python que receba (v, omega) e a distância entre rodas L = 0.3 m.
-- A função deve calcular as velocidades das rodas (v_e, v_d) e garantir que nenhuma roda ultrapasse o limite máximo de \pm 1.5\text{ m/s} (saturando proporcionalmente o comando se necessário).
+- A função deve calcular as velocidades das rodas (v_e, v_d) e garantir que nenhuma roda ultrapasse o limite máximo de pm 1.5 m/s (saturando proporcionalmente o comando se necessário).
 
 def converter_cmd_vel(v, omega, L=0.3, max_wheel_speed=1.5):
     # 1. Calcule v_e e v_d brutas
