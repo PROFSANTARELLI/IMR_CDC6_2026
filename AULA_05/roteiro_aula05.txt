@@ -1,25 +1,30 @@
 AULA IMR - 28/09/2026
 
 ETAPA 1: Revisão e explicação prova AAI
-ETAPA 2: Documentação preparatória para AC-3
+ETAPA 2: Documentação preparatória para AC-3 e AC-4
 ETAPA 3: Explicação e Execução da AC-2 parte final
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ETAPA 1 - REVISÃO E EXPLICAÇÃO PROVA AAI
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 - Apresentar todas as questões, resultados e explicações
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-ETAPA 2 - DOCUMENTAÇÃO PREPARATÓRIA PARA AC-3
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-- Será apresentado o desenvolvimento que será realizado em sala de aula
-- Documentação preparatória para desenvolvimento de robôs inteligentes
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ETAPA 2 - DOCUMENTAÇÃO PREPARATÓRIA PARA AC-3 e AC-4
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+- Explicação e mudanças para a construção das ACs 3 e 4
+- Apresentação com guia da proposta das construções
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ETAPA 3 - ATIVIDADE AC-2 PARTE FINAL (0,5)
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-- Execução das tarefas a seguir:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Execução dos 5 exercícios da aula de hoje:
+
+1 - Pegar as instruções no arquivo: labs_aula05_imr.txt
+2 - Criar o diretório AULA_05 e o arquivo resultados_aula05.md no repositório da dupla
+3 - Inserir no arquivo resultados_aula05.md todas as saídas e imagens geradas como evidêcncia da execução dos resultados
+4 - Gerar os arquivos .py ou ipynb e salvar no diretório AULA_05
 
 
