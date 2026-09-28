@@ -16,7 +16,14 @@ print(converter_cmd_vel(1.2, 3.0))  # Deve limitar sem travar o motor
 
 
 EXERCÍCIO 2:
+Nó Sensor — Processador e Filtro do Tópico /scanCenário: O sensor LiDAR fornece uma lista de 360 leituras de distância (uma para cada grau ao redor do robô). Porém, o sensor real gera ruídos com valores nulos (0.0) ou leituras infinitas fora do alcance máximo (> 5.0m).Desafio: Crie uma função que receba um array de 360 leituras e retorne a menor distância válida de 3 setores essenciais: Frente (ângulos de 345° a 15°), Esquerda (45° a 135°) e Direita (225° a 315°). Descarte leituras inferiores a $0.1\text{ m}$ ou superiores a $5.0\text{ m}$.
 
+import numpy as np
+
+def processar_scan(leituras_lidar):
+    # leituras_lidar é uma lista/array com 360 floats
+    # Retorne dict com: {'frente': min_frente, 'esquerda': min_esq, 'direita': min_dir}
+    pass
 
 
 EXERCÍCIO 3:
