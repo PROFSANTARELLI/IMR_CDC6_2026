@@ -1,4 +1,10 @@
-EXERCÍCIO 1: Nó Atuador — Conversor de /cmd_vel com Saturação dos MotoresCenário: No ROS 2, o planejador envia ordens de velocidade no tópico /cmd_vel contendo velocidade linear $v$ (m/s) e velocidade angular $\omega$ (rad/s). No entanto, os motores das rodas têm um limite físico de velocidade de no máximo $1.5\text{ m/s}$.Desafio: Escreva uma função em Python que receba $(v, \omega)$ e a distância entre rodas $L = 0.3\text{ m}$. A função deve calcular as velocidades das rodas $(v_e, v_d)$ e garantir que nenhuma roda ultrapasse o limite máximo de $\pm 1.5\text{ m/s}$ (saturando proporcionalmente o comando se necessário).Pythondef converter_cmd_vel(v, omega, L=0.3, max_wheel_speed=1.5):
+EXERCÍCIO 1:
+
+Nó Atuador — Conversor de /cmd_vel com Saturação dos MotoresCenário: No ROS 2, o planejador envia ordens de velocidade no tópico /cmd_vel contendo velocidade linear $v$ (m/s) e velocidade angular $\omega$ (rad/s).
+No entanto, os motores das rodas têm um limite físico de velocidade de no máximo $1.5\text{ m/s}$.Desafio: Escreva uma função em Python que receba $(v, \omega)$ e a distância entre rodas $L = 0.3\text{ m}$.
+A função deve calcular as velocidades das rodas $(v_e, v_d)$ e garantir que nenhuma roda ultrapasse o limite máximo de $\pm 1.5\text{ m/s}$ (saturando proporcionalmente o comando se necessário).
+
+def converter_cmd_vel(v, omega, L=0.3, max_wheel_speed=1.5):
     # 1. Calcule v_e e v_d brutas
     # 2. Verifique se v_e ou v_d ultrapassam max_wheel_speed (positivo ou negativo)
     # 3. Aplique a saturação/limitação necessária
@@ -9,37 +15,20 @@ EXERCÍCIO 1: Nó Atuador — Conversor de /cmd_vel com Saturação dos MotoresC
 print(converter_cmd_vel(1.2, 3.0))  # Deve limitar sem travar o motor
 
 
-
-EXERCÍCIO 2: Nó Sensor — Processador e Filtro do Tópico /scanCenário: O sensor LiDAR fornece uma lista de 360 leituras de distância (uma para cada grau ao redor do robô). Porém, o sensor real gera ruídos com valores nulos (0.0) ou leituras infinitas fora do alcance máximo (> 5.0m).Desafio: Crie uma função que receba um array de 360 leituras e retorne a menor distância válida de 3 setores essenciais: Frente (ângulos de 345° a 15°), Esquerda (45° a 135°) e Direita (225° a 315°). Descarte leituras inferiores a $0.1\text{ m}$ ou superiores a $5.0\text{ m}$.Pythonimport numpy as np
-
-def processar_scan(leituras_lidar):
-    # leituras_lidar é uma lista/array com 360 floats
-    # Retorne dict com: {'frente': min_frente, 'esquerda': min_esq, 'direita': min_dir}
-    pass
-
-  
-
-  
-EXERCÍCIO 3: Lógica Reativa de Obstáculos (Braitenberg com Trava de Segurança)Cenário: Um robô em navegação livre precisa desviar reativamente de paredes. Se a distância frontal for menor que a distância crítica de $0.4\text{ m}$, o robô deve acionar o freio ($v = 0.0\text{ m/s}$) e girar sobre o próprio eixo ($\omega = 1.0\text{ rad/s}$) no sentido da área mais livre. Se a frente estiver livre, ele avança a $v = 0.5\text{ m/s}$ ajustando $\omega$ proporcionalmente à diferença das distâncias laterais.Desafio: Implemente a função de controle reativo que receba o dicionário de distâncias processadas no Exercício 2 e retorne o comando de velocidade (v, omega).Pythondef controle_reativo(distancias):
-    # distancias = {'frente': float, 'esquerda': float, 'direita': float}
-    # Retorne v (linear) e omega (angular)
-    pass
+EXERCÍCIO 2:
 
 
-  
-  
-EXERCÍCIO 4: Controlador Proporcional para Atração ao Alvo (Goal Steering)Cenário: O robô conhece sua pose atual $(x, y, \theta)$ e precisa alinhar sua orientação em direção a uma coordenada alvo $(x_{alvo}, y_{alvo})$.Desafio: Calcule o ângulo desejado $\theta_{alvo} = \text{atan2}(y_{alvo} - y, x_{alvo} - x)$, determine o erro de orientação $e_\theta = \theta_{alvo} - \theta$ (normalizado no intervalo $[-\pi, \pi]$) e aplique uma lei de controle proporcional $\omega = K_p \cdot e_\theta$ com $K_p = 1.5$.Pythonimport math
 
-def calcular_orientacao_alvo(x, y, theta, x_alvo, y_alvo, Kp=1.5):
-    # 1. Calcule o angulo desejado usando math.atan2
-    # 2. Calcule o erro e_theta e normalize no intervalo [-pi, pi]
-    # 3. Calcule omega = Kp * e_theta
-    return omega
-  
-  
-  
-  EXERCÍCIO 5: Máquina de Estados Finitos do Robô AutônomoCenário: Para preparar seu código para o ROS 2 e para o Projeto Tech, o robô deve organizar seu comportamento por uma Máquina de Estados Finitos (FSM) simples com os seguintes estados:IR_PARA_ALVO: Avança em direção ao objetivo (usando a lógica do Exercício 4).DESVIAR_OBSTACULO: Ativado se a distância frontal for menor que $0.5\text{ m}$ (usando a lógica do Exercício 3).OBJETIVO_ALCANÇADO: Ativado se a distância euclidiana até o alvo for menor que $0.2\text{ m}$ ($v=0, \omega=0$).Desafio: Escreva a classe ou função principal que recebe a telemetria do robô e alterna o estado operacional, retornando o estado atual e o comando de velocidade correspondente (estado, v, omega).Pythondef maquina_de_estados(x, y, theta, x_alvo, y_alvo, dist_frente, dist_esq, dist_dir):
-    # Calcule a distancia ate o alvo: sqrt((x_alvo - x)^2 + (y_alvo - y)^2)
-    # Determine as transições de estado entre 'IR_PARA_ALVO', 'DESVIAR_OBSTACULO' e 'OBJETIVO_ALCANÇADO'
-    
-    return estado_atual, v_cmd, omega_cmd
+EXERCÍCIO 3:
+
+
+
+EXERCÍCIO 4:
+
+
+
+
+EXERCÍCIO 5:
+
+
+
