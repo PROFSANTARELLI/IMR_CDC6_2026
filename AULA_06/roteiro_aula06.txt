@@ -7,6 +7,7 @@ Bloco 1: Fundamentação Teórica
 
 Bloco 2: Apresentação do Projeto DOG-IA
 - Apresentação do DOG-IA — Robô Cão-Guia Urbano de Inteligência Assistiva.
+https://docs.google.com/presentation/d/1VhggbqTBtR4c-l_E5Rl7a6DDlJOtV0AIu__Apns-BT8/edit?usp=sharing
 
 Bloco 3: Mão na Massa e Check de Avaliação
 - Configuração do ambiente.
