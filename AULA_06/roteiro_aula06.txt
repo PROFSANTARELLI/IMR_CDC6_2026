@@ -1,0 +1,20 @@
+ROTEIRO AULA 06 — 05/10
+Objetivo: Fundamentação de ROS 2 e Start da AC-3 / AC-4
+
+Bloco 1: Fundamentação Teórica
+Conceitos de ROS 2
+Infraestrutura: Como o WSL2/WSLg e o Docker conversam com o GPU para simulações 3D pesadas sem perda de desempenho.
+Simulação e Telemetria: A diferença entre Gazebo e RViz2.
+
+Bloco 2: Apresentação do Projeto DOG-IA
+Apresentação do DOG-IA — Robô Cão-Guia Urbano de Inteligência Assistiva.
+O Desafio Tecnológico: Navegação autônoma em calçadas, detecção de obstáculos aéreos e leitura de semáforos/faixas com Visão Computacional.
+Regras AC-3 e AC-4:
+- Explicação dos pontos totais na média.
+- Regra da entrega incremental aula a aula.
+
+Bloco 3: Mão na Massa e Check de Avaliação
+- Configuração do ambiente Linux/WSL2/Docker no laboratório.
+- Criação da pasta de trabalho no terminal (ros2_ws/src) e subida do repositório Git com o modelo de README.md do DOG-IA.
+- Teste prático de terminal rodando os comandos de validação do ROS 2, Gazebo e RViz2.
+- Validação do Professor: Apresentação das telas dos simuladores abertas e envio do link do GitHub do grupo.
