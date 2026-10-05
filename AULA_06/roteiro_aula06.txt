@@ -2,19 +2,54 @@ ROTEIRO AULA 06 — 05/10
 Objetivo: Fundamentação de ROS 2 e Start da AC-3 / AC-4
 
 Bloco 1: Fundamentação Teórica
-Conceitos de ROS 2
-Infraestrutura: Como o WSL2/WSLg e o Docker conversam com o GPU para simulações 3D pesadas sem perda de desempenho.
-Simulação e Telemetria: A diferença entre Gazebo e RViz2.
+- Conceitos de ROS 2
+- Infraestrutura: Como o WSL2/WSLg e o Docker conversam com o GPU para simulações 3D pesadas sem perda de desempenho.
 
 Bloco 2: Apresentação do Projeto DOG-IA
-Apresentação do DOG-IA — Robô Cão-Guia Urbano de Inteligência Assistiva.
-O Desafio Tecnológico: Navegação autônoma em calçadas, detecção de obstáculos aéreos e leitura de semáforos/faixas com Visão Computacional.
-Regras AC-3 e AC-4:
-- Explicação dos pontos totais na média.
-- Regra da entrega incremental aula a aula.
+- Apresentação do DOG-IA — Robô Cão-Guia Urbano de Inteligência Assistiva.
 
 Bloco 3: Mão na Massa e Check de Avaliação
-- Configuração do ambiente Linux/WSL2/Docker no laboratório.
-- Criação da pasta de trabalho no terminal (ros2_ws/src) e subida do repositório Git com o modelo de README.md do DOG-IA.
+- Configuração do ambiente.
+- Criação da pasta de trabalho no terminal (ros2_ws/src) e subida do repositório Git.
 - Teste prático de terminal rodando os comandos de validação do ROS 2, Gazebo e RViz2.
 - Validação do Professor: Apresentação das telas dos simuladores abertas e envio do link do GitHub do grupo.
+
+
+Aula 05/10: Setup e Inicialização do DOG-IA
+Para garantir os primeiros 0,25 pontos na avaliação continuada (AC-3), todos os grupos deverão cumprir rigorosamente a sequência de passos abaixo durante a aula de hoje:
+
+Passo a Passo de Execução Obrigatória
+1- Formação e Confirmação dos Grupos:
+ - Definir os integrantes do grupo e registrar os nomes completos.
+
+2 - Criação do Repositório Oficial no GitHub:
+ - Criar um novo repositório com o nome exato: DOG-IA_ROBO_CAO-GUIA
+
+3 - Documentação Inicial dos Integrantes:
+ - Criar o arquivo README.md na raiz do repositório contendo o nome completo e R.A. de todos os integrantes do grupo.
+
+4 - Gestão de Acessos e Colaboradores:
+ - Adicionar obrigatoriamente todos os integrantes do grupo e o professor como colaboradores no repositório GitHub.
+
+5 - Leitura das Diretrizes Oficiais:
+ - Fazer o download e a leitura do documento: Guia Oficial - Projeto AC 3 e 4.pdf.
+
+6 - Definição e Registro do Escopo:
+ - Após a leitura completa, criar o diretório /docs no repositório.
+ - Redigir e salvar o documento de escopo dentro da pasta /docs com o nome exato: escopo_dog-ia_robo.md
+
+7 - Definição da Computador Oficial:
+ - Escolher e preparar a máquina principal (Linux nativo ou Windows com WSL2) que será utilizada como base de desenvolvimento do grupo ao longo do semestre.
+
+8 - Instalação e Configuração do Ambiente ROS 2 / Gazebo:
+ - Seguir estritamente o roteiro de instalação disponível no documento: guia_fase1_etapa1_aula05102026.pdf
+ - Executar todas as configurações necessárias para validar o ecossistema (ROS 2 Humble/Jazzy, Gazebo e RViz2).
+
+9 - Validação Final e Envio ao Professor:
+ - Ao finalizar o setup e os testes gráficos, o grupo deve enviar um e-mail oficial de conclusão para o professor:
+
+Para: flavio.santarelli@pro.fecaf.com.br
+Assunto: [DOG-IA] Conclusão da Etapa 1 - Nome do Grupo / Nomes dos Integrantes
+Conteúdo: Nome completo de todos os integrantes e o link direto do repositório do GitHub para conferência.
+
+Atenção: A validação e o recebimento do e-mail dentro do horário da aula garantem a nota de 0,25 pt referente à etapa do dia 05/10.
