@@ -1,4 +1,4 @@
-# Roteiro de Estudos — Prova Semestral de Robótica Autônoma
+# Roteiro de Estudos - Prova Semestral
 
 > **Nota Importante:** O Valor da prova vai de 0 a 3 pontos
 > - Sem consulta
