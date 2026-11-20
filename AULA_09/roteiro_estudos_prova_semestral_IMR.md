@@ -1,6 +1,6 @@
 # Roteiro de Estudos — Prova Semestral de Robótica Autônoma
 
-> **Nota Importante:** Este guia reúne os conceitos teóricos fundamentais da disciplina. O foco é o domínio lógico, matemático e arquitetural dos sistemas autônomos, sem vínculo com implementações específicas.
+> **Nota Importante:** O Valor da prova vai de 0 a 3 pontos
 
 ---
 
@@ -20,7 +20,7 @@
 
 ## 2. Planejamento de Caminhos em Grafos (Algoritmo A\*)
 
-* **Conceito:** Algoritmo de busca informada que encontra o caminho de menor custo entre um nó inicial $S$ e um objetivo $G$ em um grafo ou grade de ocupação.
+* **Conceito:** Algoritmo de busca que encontra o caminho de menor custo entre um nó inicial $S$ e um objetivo $G$ em um grafo ou grade de ocupação.
 * **Função de Avaliação:**
   $$f(n) = g(n) + h(n)$$
   * $g(n)$: Custo real acumulado do ponto de partida até o nó atual $n$.
@@ -80,10 +80,7 @@
 
 ---
 
-## 7. Checklist Rápido de Revisão Pré-Prova
 
-1. Sei diferenciar quando usar **planejamento global (A\*)** e quando depender da **camada reativa local**?
-2. Consigo explicar como a **inflação de obstáculos (*C-Space*)** garante a segurança física do robô?
-3. Sei justificar por que o **filtro de mediana** vence a **média móvel** diante de falhas pontuais de sensor?
-4. Consigo aplicar a fórmula da **distância de frenagem** ($d = \frac{v^2}{2a}$) e o conceito de **zona varrida** em problemas de colisão?
-5. Sei estruturar uma **FSM hierárquica** com estados, condições de transição e mecanismo contra *deadlock*?
+
+
+
