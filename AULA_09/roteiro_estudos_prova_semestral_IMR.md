@@ -1,6 +1,9 @@
 # Roteiro de Estudos — Prova Semestral de Robótica Autônoma
 
 > **Nota Importante:** O Valor da prova vai de 0 a 3 pontos
+> - Sem consulta
+> - Serão 4 questões alternativas de 0,5 ponto cada e um dissertativa de 1 ponto
+> - A prova será apenas autorizada usando os computadores do laboratório **(SEM exceção)**
 
 ---
 
